@@ -5,3 +5,11 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
         chrome.tabs.sendMessage(sender.tab.id, msg, {frameId: 0});
     }
 });
+
+chrome.webNavigation["onHistoryStateUpdated"].addListener(function(data) {
+    if (!data.url.startsWith("chrome://")) {
+        chrome.tabs.executeScript(data.tabId, {code: "var historyStateUpdated = 1"}, function() {
+            chrome.tabs.executeScript(data.tabId, {file: "content.js"});
+        });
+    }
+});

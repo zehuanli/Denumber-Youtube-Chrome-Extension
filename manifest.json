@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "description": "Disable number key shortcuts for YouTube Video Players, works in both youtube.com and embedded iframes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Denumber YouTube",
   "content_scripts": [
     {
@@ -11,6 +11,7 @@
       "all_frames": true
     }
   ],
+  "permissions": ["webNavigation", "*://*/*"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false

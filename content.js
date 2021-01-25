@@ -5,7 +5,13 @@ if (window === top) {
     });
 }
 
-window.onload = function() {
+if (typeof historyStateUpdated != 'undefined' && historyStateUpdated == 1) {
+    init();
+} else {
+    window.onload = init;
+}
+
+function init() {
     // if the page contains a video player, add a keydown event listener to the window,
     // and send a message to the background which will try to notify its parent page, if it's an iframe
     var eles = document.getElementsByClassName("html5-video-container");
